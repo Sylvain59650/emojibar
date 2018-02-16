@@ -1,0 +1,13 @@
+<html>
+
+<body>
+  <script src="../distrib/lodash-core.min.js"></script>
+  <h1>Availables functions</h1>
+  <ul id="fn">
+  </ul>
+  <script>
+    document.querySelector("#fn").innerHTML = "<li>" + Object.keys(_).join("</li><li>");
+  </script>
+</body>
+
+</html>

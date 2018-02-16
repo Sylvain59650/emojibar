@@ -1,0 +1,7 @@
+gulpfile.js
+node_modules/**
+.vscode/**
+docs/*
+tests/*
+sources/*
+ts/*
