@@ -1,0 +1,63 @@
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <style>
+    @font-face {
+      font-family: 'seguiemj.ttf';
+      src: url('seguiemj.ttf') format('truetype');
+    }
+    
+    body,
+    .emoji {
+      font-family: 'seguiemj';
+    }
+    
+    ul.emojis {
+      font-size: 32pt;
+      font-family: seguiemj;
+      fill: burlywood;
+      list-style: none;
+      margin: 5px;
+      padding: 0px;
+      box-shadow: 1px 1px 5px #555;
+      max-height: 450px;
+      overflow-y: scroll;
+      max-width: 350px;
+      border: solid 1px gray;
+      float: right;
+      z-index: 100;
+      background-color: white;
+    }
+    
+    ul.emojis>li,
+    ul.emojisBar>li {
+      display: inline-block;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main"></div>
+  <script src="emoji.js"></script>
+  <script src="emojibar.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var emojiClass = "emojis";
+      var st = "<ul class='" + emojiClass + "'>";
+      for (var ii = 0, l = emojis.length; ii < l; ii++) {
+        var item = emojis[ii];
+        for (var i = item.range[0]; i <= item.range[1]; i++)
+          st += "<li title=" + i + ">&#" + i + "</li>";
+      }
+      st += "</ul>";
+      var main = document.querySelector("#main");
+      main.insertAdjacentHTML("beforeBegin", st);
+      //document.write(st);
+    });
+  </script>
+</body>
+
+</html>

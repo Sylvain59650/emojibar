@@ -1,0 +1,76 @@
+ul.emojisBar {
+  font-size: 24pt;
+  font-family: EmojiOne Mozilla;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  max-height: 32px;
+  min-width: 350px;
+  max-width: 350px;
+  border: solid 1px gray;
+}
+
+ul.emojis {
+  font-size: 16pt;
+  font-family: EmojiOne Mozilla;
+  fill: burlywood;
+  list-style: none;
+  margin: 5px;
+  padding: 0px;
+  box-shadow: 1px 1px 5px #555;
+  max-height: 450px;
+  overflow-y: scroll;
+  max-width: 350px;
+  min-width: 350px;
+  border: solid 1px gray;
+  float: right;
+  z-index: 100;
+  background-color: white;
+}
+
+ul.emojis li:hover {
+  background-color: chocolate
+}
+
+.emo {
+  font-family: EmojiOne Mozilla;
+  display: inline;
+}
+
+.emojis-hide {
+  display: none;
+  visibility: hidden;
+}
+
+ul.emojis>li,
+ul.emojisBar>li {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.uni {
+  color: red;
+  font-size: 72pt;
+  background-color: yellow;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#t2 {
+  width: 200px;
+  height: 200px;
+  border: solid 1px gray;
+}
+
+#t3 {
+  width: 200px;
+  height: 200px;
+  border: solid 1px gray;
+}
+
+#emoji-bar1 {
+  overflow: hidden
+}
+
+#emoji-bar2 {
+  overflow: scroll
+}

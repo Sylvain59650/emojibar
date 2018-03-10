@@ -1,21 +1,128 @@
 <html>
 
 <head>
-  <style>
-    .uni {
-      color: red;
-      font-size: 20pt;
-    }
-  </style>
-</head>
+  <meta charset="utf8" />
 
-<body>
-  <ul>
-    <li>😂 &#x1F601; U+1F601
-      <p class="uni">&#x1F44D;</p>
-    </li>
-    <li>U+1F602</li>
-  </ul>
-</body>
+  <head>
+
+    <body>
+      <div style="margin-top:50px"></div>
+      <div id="t2" contenteditable="true">bla bla bla</div>
+      <div id="t3" contenteditable="true" style="position:absolute;left:600;top:400">hahaha</div>
+      <script src="../node_modules/htmlelement-extension/distrib/htmlelement.min.js"></script>
+      <script src="../node_modules/linq-to-objects/distrib/linq-to-objects.min.js"></script>
+      <script src="emoji.js"></script>
+      <script src="emojibar.js"></script>
+      <script src="emojiPopin.js"></script>
+      <link rel="stylesheet" type="text/css" href="emojis.css" />
+      <script>
+        var emojisChars = [{
+          "range": [8252, 8252]
+        }, {
+          "range": [8265, 8265]
+        }];
+
+
+
+        document.ready(function() {
+          function toogleEmojisPage(elem, evt) {
+            var pag = page.page;
+            if (pag.hasClass("emojis-hide")) {
+              var offset = elem.offset();
+              pag.css({
+                position: "absolute",
+                left: offset.left,
+                top: offset.top
+              });
+              page.attachTo(elem);
+              pag.removeClass("emojis-hide");
+            } else {
+              pag.addClass("emojis-hide");
+            }
+          }
+
+          function bigger(evt) {
+            debugger;
+            console.log("bigger");
+            textarea.focus();
+            var sel = document.getSelection();
+          }
+
+          function smaller(evt) {
+            console.log("smaller");
+          }
+
+
+          var textarea = document.querySelector("#t2");
+
+          var page = new EmojiPopin({
+            id: "full",
+            data: emojis,
+            className: "emojis emojis-hide"
+          });
+
+          var more = newElement("span", {
+            id: "more_emojis"
+          }, "...");
+          more.onclick = toogleEmojisPage.bind(this, textarea);
+
+
+
+          function clickOutsidePage(exceptIds, evt) {
+            if (page.page.hasClass("emojis-hide")) return;
+            if (exceptIds.includes(evt.target.id)) return;
+            var p = evt.target;
+            while (p != null && p.nodeType === 1 && p !== page.page) {
+              p = p.parent();
+            }
+            if (p !== page.page) {
+              page.showPage(false);
+            }
+          }
+
+
+
+          var bar = new EmojiBar({
+            id: "barFixe",
+            data: emojisChars,
+            className: "emojisBar"
+          });
+          bar.insertElement(more);
+
+          var add = newElement("span", {
+            id: "emojis-add"
+          }, "&#9650;", {
+            "emojis-bigger": bigger.bind(this)
+          });
+          var minus = newElement("span", {
+            id: "emojis-minus"
+          }, "&#9660;", {
+            "emojis-smaller": smaller.bind(this)
+          });
+          bar.insertElement(add);
+          bar.insertElement(minus);
+
+
+          //page.attachTo(textarea);
+          bar.attachTo(textarea, "top");
+
+          var t3 = document.querySelector("#t3");
+          var bar3 = new EmojiBar({
+            id: "barFixe3",
+            data: emojisChars,
+            className: "emojisBar"
+          });
+          bar3.attachTo(t3, "top");
+          var more3 = newElement("span", {
+            id: "more_emojis3"
+          }, "...");
+          more3.onclick = toogleEmojisPage.bind(this, t3);
+          bar3.insertElement(more3);
+
+          window.addEventListener('click', clickOutsidePage.bind(this, ["more_emojis", "more_emojis3"]));
+        });
+      </script>
+
+    </body>
 
 </html>
